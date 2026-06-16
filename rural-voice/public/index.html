@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Rural Voice — Connecting Villages with Government</title>
+<meta name="description" content="Rural Voice connects village communities directly with government officials — submit grievances, track resolutions, and stay informed about government schemes."/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-brand">
+    <span class="leaf">🌾</span> Rural Voice
+  </div>
+  <div class="nav-links" id="guestNav">
+    <button onclick="showPage('home')" class="active" id="navHome">Home</button>
+    <button onclick="showPage('announcements')" id="navAnn">Announcements</button>
+    <button onclick="showPage('login')">Login</button>
+    <button onclick="showPage('register')" class="btn-cta">Register</button>
+  </div>
+  <div class="nav-user" id="userNav" style="display:none">
+    <div class="avatar" id="navAvatar">V</div>
+    <span style="font-size:13px;color:#C0DD97" id="navName">User</span>
+    <button class="logout" onclick="logout()">Logout</button>
+  </div>
+</nav>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg" onclick="closeModal(event)">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<!-- ===== HOME PAGE ===== -->
+<div class="page active" id="page-home">
+  <div class="ticker-bar">
+    <span class="ticker-label">LIVE</span>
+    <span class="ticker-scroll" id="tickerText">📢 New PM Kisan Samman Yojana payments released — Check eligibility &nbsp;&nbsp;|&nbsp;&nbsp; 🏗️ Road repair work begins in Sector 4 — expected completion: 30 days &nbsp;&nbsp;|&nbsp;&nbsp; 💊 Free health camp on 20th June at Gram Panchayat Hall &nbsp;&nbsp;|&nbsp;&nbsp; 📝 Village survey for new well — register your household</span>
+  </div>
+
+  <div class="hero">
+    <h1>Your village's voice,<br><span>heard by officials.</span></h1>
+    <p>Rural Voice connects village communities directly with government officials — submit grievances, track resolutions, and stay informed about government schemes.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showPage('register')">Register as Villager</button>
+      <button class="btn-secondary" onclick="showPage('announcements')">View Announcements</button>
+    </div>
+  </div>
+
+  <div class="stats" style="margin:-30px auto 0">
+    <div class="stat"><div class="stat-num" id="s1">1,240</div><div class="stat-label">Registered Villagers</div></div>
+    <div class="stat"><div class="stat-num" id="s2">348</div><div class="stat-label">Complaints Filed</div></div>
+    <div class="stat"><div class="stat-num" id="s3">289</div><div class="stat-label">Issues Resolved</div></div>
+    <div class="stat"><div class="stat-num" id="s4">42</div><div class="stat-label">Officials Active</div></div>
+  </div>
+
+  <div class="features-section">
+    <h2 class="section-title">How Rural Voice helps you</h2>
+    <p class="section-sub">A platform built for every citizen — simple, accessible, impactful.</p>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon" style="background:#EAF3DE">📝</div><h3>Submit Grievances</h3><p>File complaints about local issues — roads, water, electricity — and track their status in real time.</p></div>
+      <div class="feature-card"><div class="feature-icon" style="background:#E1F5EE">📢</div><h3>Government Updates</h3><p>Get the latest announcements about schemes, subsidies, and local development projects.</p></div>
+      <div class="feature-card"><div class="feature-icon" style="background:#FAEEDA">🏛️</div><h3>Official Responses</h3><p>Government officials can respond to your complaints and provide timelines for resolution.</p></div>
+      <div class="feature-card"><div class="feature-icon" style="background:#FAECE7">📊</div><h3>Track Progress</h3><p>Follow up on your filed complaints with live status updates — Pending, In Progress, or Resolved.</p></div>
+      <div class="feature-card"><div class="feature-icon" style="background:#E6F1FB">🔒</div><h3>Secure & Private</h3><p>Your data is protected. Login securely and manage your account with confidence.</p></div>
+      <div class="feature-card"><div class="feature-icon" style="background:#EAF3DE">📱</div><h3>Mobile Friendly</h3><p>Access from any device, even on a basic smartphone — designed for rural connectivity.</p></div>
+    </div>
+  </div>
+
+  <div style="background:#fff;border-top:1px solid #e0e8d8;border-bottom:1px solid #e0e8d8;padding:2.5rem 2rem;margin-bottom:0">
+    <div style="max-width:800px;margin:0 auto">
+      <h2 class="section-title">How it works</h2>
+      <p class="section-sub">Three simple steps to make your voice count</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin-top:2rem">
+        <div style="text-align:center">
+          <div style="width:56px;height:56px;background:#27500A;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px;color:#C0DD97;font-weight:800">1</div>
+          <h3 style="font-size:14px;font-weight:700;color:#173404;margin-bottom:6px">Register</h3>
+          <p style="font-size:13px;color:#888780">Create your account with your village details and contact information.</p>
+        </div>
+        <div style="text-align:center">
+          <div style="width:56px;height:56px;background:#27500A;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px;color:#C0DD97;font-weight:800">2</div>
+          <h3 style="font-size:14px;font-weight:700;color:#173404;margin-bottom:6px">Submit</h3>
+          <p style="font-size:13px;color:#888780">File your grievance with a description, category, and location details.</p>
+        </div>
+        <div style="text-align:center">
+          <div style="width:56px;height:56px;background:#27500A;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px;color:#C0DD97;font-weight:800">3</div>
+          <h3 style="font-size:14px;font-weight:700;color:#173404;margin-bottom:6px">Track</h3>
+          <p style="font-size:13px;color:#888780">Receive responses from officials and track your complaint to resolution.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Made with ❤️ for rural India &nbsp;|&nbsp; <span>Rural Voice</span> &nbsp;|&nbsp; Empowering communities since 2024</footer>
+</div>
+
+<!-- ===== REGISTER PAGE ===== -->
+<div class="page" id="page-register">
+<div class="form-page" style="margin-top:30px">
+  <h2>Create your account</h2>
+  <p class="sub">Join Rural Voice and make your community's voice heard.</p>
+  <div class="role-tabs">
+    <button class="role-tab active" onclick="setRole('villager',this)">👨‍🌾 Villager</button>
+    <button class="role-tab" onclick="setRole('official',this)">🏛️ Official</button>
+  </div>
+  <div class="alert" id="reg-alert"></div>
+  <div class="form-row">
+    <div class="form-group"><label>First Name</label><input id="reg-fname" placeholder="Ravi" /></div>
+    <div class="form-group"><label>Last Name</label><input id="reg-lname" placeholder="Kumar" /></div>
+  </div>
+  <div class="form-group"><label>Email Address</label><input id="reg-email" type="email" placeholder="ravi@village.in" /></div>
+  <div class="form-group"><label>Phone Number</label><input id="reg-phone" placeholder="+91 98765 43210" /></div>
+  <div class="form-group"><label>Village / Town</label><input id="reg-village" placeholder="Rampur" /></div>
+  <div class="form-group"><label>District</label><input id="reg-district" placeholder="Varanasi" /></div>
+  <div class="form-group" id="dept-group" style="display:none"><label>Department</label>
+    <select id="reg-dept"><option>-- Select Department --</option><option>Public Works</option><option>Health</option><option>Agriculture</option><option>Education</option><option>Water Supply</option><option>Electricity Board</option><option>Revenue</option></select>
+  </div>
+  <div class="form-group"><label>Password</label><input id="reg-pass" type="password" placeholder="Min 6 characters" /></div>
+  <button class="btn-full" onclick="doRegister()">Create Account</button>
+  <p class="form-switch">Already have an account? <span onclick="showPage('login')">Login here</span></p>
+</div>
+</div>
+
+<!-- ===== LOGIN PAGE ===== -->
+<div class="page" id="page-login">
+<div class="form-page" style="margin-top:40px">
+  <h2>Welcome back</h2>
+  <p class="sub">Login to your Rural Voice account.</p>
+  <div class="role-tabs">
+    <button class="role-tab active" onclick="setLoginRole('villager',this)">👨‍🌾 Villager</button>
+    <button class="role-tab" onclick="setLoginRole('official',this)">🏛️ Official</button>
+    <button class="role-tab" onclick="setLoginRole('admin',this)">⚙️ Admin</button>
+  </div>
+  <div class="alert" id="login-alert"></div>
+  <div class="form-group"><label>Email Address</label><input id="login-email" type="email" placeholder="your@email.in" /></div>
+  <div class="form-group"><label>Password</label><input id="login-pass" type="password" placeholder="Your password" /></div>
+  <button class="btn-full" onclick="doLogin()">Login</button>
+  <p class="form-switch" style="margin-top:.8rem;font-size:12px;color:#B4B2A9">Demo — Villager: villager@demo.in / pass123 &nbsp;|&nbsp; Official: official@demo.in / pass123 &nbsp;|&nbsp; Admin: admin@demo.in / pass123</p>
+  <p class="form-switch">Don't have an account? <span onclick="showPage('register')">Register</span></p>
+</div>
+</div>
+
+<!-- ===== VILLAGER DASHBOARD ===== -->
+<div class="page" id="page-villager">
+<div class="dashboard">
+  <div class="dashboard-header">
+    <div>
+      <h2 id="vill-greeting">Good morning, Ravi 👋</h2>
+      <p style="font-size:13px;color:#888780">Rampur Village, Varanasi District</p>
+    </div>
+    <button class="btn-primary" onclick="showPage('submit-complaint')" style="padding:9px 18px;font-size:13px">+ New Complaint</button>
+  </div>
+
+  <div class="dash-stats">
+    <div class="dash-stat"><span class="ds-icon">📝</span><div class="ds-num" id="vd-total">4</div><div class="ds-label">Complaints filed</div></div>
+    <div class="dash-stat"><span class="ds-icon">⏳</span><div class="ds-num" id="vd-pending">1</div><div class="ds-label">Pending</div></div>
+    <div class="dash-stat"><span class="ds-icon">🔄</span><div class="ds-num" id="vd-progress">2</div><div class="ds-label">In Progress</div></div>
+    <div class="dash-stat"><span class="ds-icon">✅</span><div class="ds-num" id="vd-resolved">1</div><div class="ds-label">Resolved</div></div>
+  </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('my-complaints','vill')">My Complaints</button>
+    <button class="tab-btn" onclick="switchTab('announcements-tab','vill');loadAnnTab()">Announcements</button>
+    <button class="tab-btn" onclick="switchTab('profile-tab','vill')">My Profile</button>
+  </div>
+
+  <div id="my-complaints">
+    <div class="search-bar">
+      <input id="vill-search" placeholder="Search complaints..." oninput="filterVillComplaints()" />
+    </div>
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="setVillFilter('all',this)">All</button>
+      <button class="filter-btn" onclick="setVillFilter('Pending',this)">Pending</button>
+      <button class="filter-btn" onclick="setVillFilter('In Progress',this)">In Progress</button>
+      <button class="filter-btn" onclick="setVillFilter('Resolved',this)">Resolved</button>
+    </div>
+    <div class="table-card">
+      <div class="table-card-header"><h3>Your Complaints</h3></div>
+      <table>
+        <thead><tr><th>ID</th><th>Title</th><th>Category</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody id="vill-complaint-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="announcements-tab" style="display:none">
+    <div id="annTabContent"></div>
+  </div>
+
+  <div id="profile-tab" style="display:none">
+    <div class="profile-card">
+      <div class="profile-avatar-lg" id="prof-avatar">RK</div>
+      <h3 id="prof-name" style="font-size:1.1rem;font-weight:700;color:#173404">Ravi Kumar</h3>
+      <p style="font-size:13px;color:#888780;margin-top:3px" id="prof-email">villager@demo.in</p>
+      <span class="badge villager" style="margin-top:8px;display:inline-block">Villager</span>
+    </div>
+    <div class="profile-card">
+      <h3 style="font-size:14px;font-weight:700;color:#173404;margin-bottom:1rem">Account Details</h3>
+      <div style="display:grid;gap:10px">
+        <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#888780">Village</span><span id="prof-village" style="font-weight:600">Rampur</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#888780">District</span><span id="prof-district" style="font-weight:600">Varanasi</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#888780">Phone</span><span style="font-weight:600">+91 98765 43210</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#888780">Joined</span><span style="font-weight:600">June 2024</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== SUBMIT COMPLAINT ===== -->
+<div class="page" id="page-submit-complaint">
+<div class="complaint-section">
+  <h2>Submit a Complaint</h2>
+  <p class="sub">Describe your issue clearly so officials can act quickly.</p>
+  <div class="complaint-card">
+    <div class="alert" id="comp-alert"></div>
+    <div class="form-group"><label>Complaint Title</label><input id="comp-title" placeholder="e.g. Broken road near market" /></div>
+    <div class="form-row">
+      <div class="form-group"><label>Category</label>
+        <select id="comp-cat">
+          <option>Roads & Infrastructure</option><option>Water Supply</option><option>Electricity</option>
+          <option>Health</option><option>Education</option><option>Agriculture</option>
+          <option>Sanitation</option><option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Priority</label>
+        <select id="comp-priority"><option>Normal</option><option>Urgent</option></select>
+      </div>
+    </div>
+    <div class="form-group"><label>Location Details</label><input id="comp-loc" placeholder="e.g. Near Panchayat Hall, Main Road" /></div>
+    <div class="form-group"><label>Description</label><textarea id="comp-desc" placeholder="Provide as much detail as possible — when did it start, who is affected, what outcome you expect..."></textarea></div>
+    <div style="display:flex;gap:10px;margin-top:.5rem">
+      <button class="btn-full" onclick="submitComplaint()" style="max-width:200px">Submit Complaint</button>
+      <button onclick="showPage('villager')" style="flex:1;padding:12px;background:#fff;color:#888780;border:1.5px solid #D3D1C7;border-radius:8px;font-size:14px;font-weight:600">Cancel</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== OFFICIAL DASHBOARD ===== -->
+<div class="page" id="page-official">
+<div class="dashboard">
+  <div class="dashboard-header">
+    <div>
+      <h2>Official Dashboard 🏛️</h2>
+      <p style="font-size:13px;color:#888780" id="off-dept-label">Public Works Department</p>
+    </div>
+    <button class="btn-primary" onclick="openPostAnnModal()" style="padding:9px 18px;font-size:13px">+ Post Announcement</button>
+  </div>
+
+  <div class="dash-stats">
+    <div class="dash-stat"><span class="ds-icon">📥</span><div class="ds-num" id="od-total">8</div><div class="ds-label">Total complaints</div></div>
+    <div class="dash-stat"><span class="ds-icon">🔴</span><div class="ds-num" id="od-pending">3</div><div class="ds-label">Pending</div></div>
+    <div class="dash-stat"><span class="ds-icon">🔵</span><div class="ds-num" id="od-prog">4</div><div class="ds-label">In Progress</div></div>
+    <div class="dash-stat"><span class="ds-icon">🟢</span><div class="ds-num" id="od-res">1</div><div class="ds-label">Resolved</div></div>
+  </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('off-complaints','off')">Complaints</button>
+    <button class="tab-btn" onclick="switchTab('off-announcements','off')">My Announcements</button>
+  </div>
+
+  <div id="off-complaints">
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="setOffFilter('all',this)">All</button>
+      <button class="filter-btn" onclick="setOffFilter('Pending',this)">Pending</button>
+      <button class="filter-btn" onclick="setOffFilter('In Progress',this)">In Progress</button>
+      <button class="filter-btn" onclick="setOffFilter('Resolved',this)">Resolved</button>
+      <button class="filter-btn" onclick="setOffFilter('Urgent',this)">Urgent</button>
+    </div>
+    <div class="table-card">
+      <div class="table-card-header"><h3>All Complaints</h3></div>
+      <table>
+        <thead><tr><th>ID</th><th>Villager</th><th>Title</th><th>Category</th><th>Priority</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="off-complaint-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="off-announcements" style="display:none">
+    <div class="table-card">
+      <div class="table-card-header"><h3>Posted Announcements</h3></div>
+      <table>
+        <thead><tr><th>Title</th><th>Department</th><th>Date</th><th>Action</th></tr></thead>
+        <tbody id="off-ann-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== ADMIN DASHBOARD ===== -->
+<div class="page" id="page-admin">
+<div class="dashboard">
+  <div class="dashboard-header">
+    <div><h2>Admin Dashboard ⚙️</h2><p style="font-size:13px;color:#888780">Platform overview & management</p></div>
+  </div>
+  <div class="dash-stats">
+    <div class="dash-stat"><span class="ds-icon">👥</span><div class="ds-num">1,240</div><div class="ds-label">Total Users</div></div>
+    <div class="dash-stat"><span class="ds-icon">🏛️</span><div class="ds-num">42</div><div class="ds-label">Officials</div></div>
+    <div class="dash-stat"><span class="ds-icon">📝</span><div class="ds-num" id="ad-comp-num">8</div><div class="ds-label">Total Complaints</div></div>
+    <div class="dash-stat"><span class="ds-icon">📢</span><div class="ds-num" id="ad-ann-num">5</div><div class="ds-label">Announcements</div></div>
+  </div>
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('admin-users','adm')">Users</button>
+    <button class="tab-btn" onclick="switchTab('admin-complaints','adm')">All Complaints</button>
+    <button class="tab-btn" onclick="switchTab('admin-ann','adm')">Announcements</button>
+  </div>
+  <div id="admin-users">
+    <div class="table-card">
+      <div class="table-card-header"><h3>Registered Users</h3></div>
+      <table>
+        <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Village/Dept</th><th>Joined</th></tr></thead>
+        <tbody id="admin-user-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+  <div id="admin-complaints" style="display:none">
+    <div class="table-card">
+      <div class="table-card-header"><h3>All Complaints</h3></div>
+      <table>
+        <thead><tr><th>ID</th><th>By</th><th>Title</th><th>Category</th><th>Status</th><th>Date</th></tr></thead>
+        <tbody id="admin-comp-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+  <div id="admin-ann" style="display:none">
+    <div class="table-card">
+      <div class="table-card-header"><h3>All Announcements</h3></div>
+      <table>
+        <thead><tr><th>Title</th><th>Department</th><th>Posted By</th><th>Date</th></tr></thead>
+        <tbody id="admin-ann-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== PUBLIC ANNOUNCEMENTS ===== -->
+<div class="page" id="page-announcements">
+<div class="announcements-section">
+  <h2 style="font-size:1.4rem;font-weight:700;color:#173404;margin-bottom:.3rem">Government Announcements</h2>
+  <p style="font-size:13px;color:#888780;margin-bottom:1.2rem">Latest updates, schemes, and notices from government departments.</p>
+  <div class="filter-row" id="ann-filter-row">
+    <button class="filter-btn active" onclick="setAnnFilter('all',this)">All</button>
+    <button class="filter-btn" onclick="setAnnFilter('Agriculture',this)">Agriculture</button>
+    <button class="filter-btn" onclick="setAnnFilter('Health',this)">Health</button>
+    <button class="filter-btn" onclick="setAnnFilter('Public Works',this)">Public Works</button>
+    <button class="filter-btn" onclick="setAnnFilter('Education',this)">Education</button>
+  </div>
+  <div id="ann-list"></div>
+</div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

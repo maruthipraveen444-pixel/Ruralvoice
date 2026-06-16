@@ -1,0 +1,12 @@
+{
+  "name": "rural-voice",
+  "version": "1.0.0",
+  "description": "A web platform that connects village peoples and government officials and updates.",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve public",
+    "start": "npx serve public"
+  },
+  "keywords": ["rural", "governance", "civic-tech", "grievance-redressal"],
+  "license": "MIT"
+}
