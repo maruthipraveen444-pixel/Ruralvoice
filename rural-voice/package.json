@@ -7,6 +7,14 @@
     "dev": "npx serve public",
     "start": "npx serve public"
   },
-  "keywords": ["rural", "governance", "civic-tech", "grievance-redressal"],
-  "license": "MIT"
+  "keywords": [
+    "rural",
+    "governance",
+    "civic-tech",
+    "grievance-redressal"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.6"
+  }
 }
